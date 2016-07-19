@@ -1,0 +1,56 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>GetProductsServlet</servlet-name>
+    <servlet-class>com.wavemaker.learning.servlets.ProductServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>GetProductsServlet</servlet-name>
+    <url-pattern>/productsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProductDetails</servlet-name>
+    <servlet-class>com.wavemaker.learning.servlets.ProductDetails</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ProductDetails</servlet-name>
+    <url-pattern>/productsDetails</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.wavemaker.learning.servlets.LoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/loginServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+      <servlet-name>Logout</servlet-name>
+      <servlet-class>com.wavemaker.learning.servlets.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logoutServlet</url-pattern>
+  </servlet-mapping>
+
+
+
+  <welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+  </welcome-file-list>
+
+
+</web-app>
