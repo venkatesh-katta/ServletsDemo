@@ -1,4 +1,4 @@
-package com.wavemaker.learning.Models;
+package com.wavemaker.learning.models;
 
 /**
  * Created by venkateswarluk on 18/7/16.

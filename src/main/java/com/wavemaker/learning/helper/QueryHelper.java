@@ -2,7 +2,7 @@ package com.wavemaker.learning.helper;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import com.wavemaker.learning.Utils.ConnectionBuilder;
+import com.wavemaker.learning.Utils.ConnectionUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,19 +12,15 @@ import java.sql.SQLException;
  */
 public class QueryHelper {
 
-    private Statement statement;
-
-    private Connection connection;
-
-    public Connection getConnection() {
-        Connection connection = ConnectionBuilder.getInstance().getConnection();
-        return connection;
-    }
-
-    public ResultSet query(String query) throws SQLException {
-        statement = (Statement) getConnection().createStatement();
+    public ResultSet executeQuery(String query) throws SQLException {
+        Statement statement = (Statement) getConnection().createStatement();
         ResultSet res = statement.executeQuery(query);
         return res;
+    }
+
+    private Connection getConnection() {
+        Connection connection = ConnectionUtil.getInstance().getConnection();
+        return connection;
     }
 
 }

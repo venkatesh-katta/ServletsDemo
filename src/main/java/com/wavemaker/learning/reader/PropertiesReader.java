@@ -1,6 +1,6 @@
 package com.wavemaker.learning.reader;
 
-import com.wavemaker.learning.Models.DBProperties;
+import com.wavemaker.learning.models.DBProperties;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,6 +1,6 @@
 package com.wavemaker.learning.servlets;
 
-import com.wavemaker.learning.Models.Products;
+import com.wavemaker.learning.models.Products;
 import com.wavemaker.learning.base64.EncodeandDecode;
 import com.wavemaker.learning.helper.QueryHelper;
 
@@ -42,7 +42,7 @@ public class ProductDetails extends HttpServlet {
             out.print("<b>Welcome to Profile</b>");
             out.print("<br>Welcome, " + name);
             try {
-                resultSet = queryHelper.query("select * from Products where ProductID =" + productId);
+                resultSet = queryHelper.executeQuery("select * from Products where ProductID =" + productId);
                 while (resultSet.next()) {
                     Products products = new Products();
                     products.setProductID(resultSet.getInt("ProductID"));

@@ -1,7 +1,7 @@
 package com.wavemaker.learning.Utils;
 
 import com.mysql.jdbc.Connection;
-import com.wavemaker.learning.Models.DBProperties;
+import com.wavemaker.learning.models.DBProperties;
 import com.wavemaker.learning.constants.ProjectConstants;
 import com.wavemaker.learning.reader.PropertiesReader;
 import java.io.InputStream;
@@ -12,16 +12,16 @@ import java.sql.SQLException;
 /**
  * Created by venkateswarluk on 14/7/16.
  */
-public class ConnectionBuilder {
+public class ConnectionUtil {
 
     InputStream inputStream;
 
-    public static ConnectionBuilder instance;
+    public static ConnectionUtil instance;
 
     private DBProperties dbProperties;
 
 
-    private ConnectionBuilder(){
+    private ConnectionUtil(){
         init();
     }
 
@@ -36,9 +36,9 @@ public class ConnectionBuilder {
         return getClass().getClassLoader().getResourceAsStream(propertiesFileName);
     }
 
-    public static synchronized ConnectionBuilder getInstance() {
+    public static synchronized ConnectionUtil getInstance() {
         if (instance == null) {
-            instance = new ConnectionBuilder();
+            instance = new ConnectionUtil();
         }
         return instance;
     }
