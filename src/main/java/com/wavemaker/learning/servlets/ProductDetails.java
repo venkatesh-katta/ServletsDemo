@@ -1,8 +1,10 @@
 package com.wavemaker.learning.servlets;
 
+import com.wavemaker.learning.alogorithm.CookieHandler;
 import com.wavemaker.learning.models.Products;
-import com.wavemaker.learning.base64.EncodeandDecode;
+import com.wavemaker.learning.alogorithm.Base64Encryption;
 import com.wavemaker.learning.helper.QueryHelper;
+import com.wavemaker.learning.service.ProductDetailsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -22,41 +24,16 @@ import java.util.List;
 public class ProductDetails extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        QueryHelper queryHelper = new QueryHelper();
-        ResultSet resultSet = null;
+        ProductDetailsService productDetailsService = new ProductDetailsService();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
         String productId = request.getParameter("id");
-        List<Products> list = new ArrayList<Products>();
         Cookie[] cookie = request.getCookies();
-        String name = null;
-
-
-        for (int i = 0; i < cookie.length; i++) {
-            if (cookie[i].getName().equals("auth-cookie")) {
-                name = EncodeandDecode.base64Decode(cookie[i].getValue());
-            }
-        }
+        String name =  CookieHandler.getAuthCookie(cookie);
         if (name != null &&!name.isEmpty()) {
             out.print("<b>Welcome to Profile</b>");
             out.print("<br>Welcome, " + name);
-            try {
-                resultSet = queryHelper.executeQuery("select * from Products where ProductID =" + productId);
-                while (resultSet.next()) {
-                    Products products = new Products();
-                    products.setProductID(resultSet.getInt("ProductID"));
-                    products.setProductName(resultSet.getString("ProductName"));
-                    products.setCategoryID(resultSet.getInt("CategoryID"));
-                    products.setSupplierID(resultSet.getInt("SupplierID"));
-                    products.setQuantityPerUnit(resultSet.getString("QuantityPerUnit"));
-                    products.setUnitPrice(resultSet.getFloat("UnitPrice"));
-
-                    list.add(products);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            List<Products> list = productDetailsService.loadProductDetails(productId);
             out.print("<table border='1' width='100%'");
             out.print("<tr><th>ProductID</th><th>ProductName</th><th>CategoryID</th><th>SupplierID</th><th>QuantityPerUnit</th><th>UnitPrice</th></tr>");
             for (Products e : list) {

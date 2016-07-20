@@ -11,21 +11,22 @@ import java.sql.SQLException;
  */
 public class UserService {
 
-    QueryHelper queryHelper = new QueryHelper();
+    private QueryHelper queryHelper = new QueryHelper();
 
     public User loadUser(String userName){
-        User user = new User();
-
         try {
             ResultSet resultSet = queryHelper.executeQuery("select * from Login where username='"+userName+"'");
-            while (resultSet.next()) {
-                user.setUsername(resultSet.getString("username"));
-                user.setPassword(resultSet.getString("password"));
+            if (!resultSet.next()) {
+                throw new RuntimeException("User does not exist in database");
             }
+            User user = new User();
+            user.setUsername(resultSet.getString("username"));
+            user.setPassword(resultSet.getString("password"));
+            return user;
         }catch (SQLException sqle){
-            System.out.println(sqle);
+            throw new RuntimeException(sqle);
         }
-        return user;
+
 
     }
 }

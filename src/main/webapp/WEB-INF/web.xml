@@ -25,7 +25,7 @@
     <url-pattern>/productsDetails</url-pattern>
   </servlet-mapping>
 
-  <servlet>
+  <!--<servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.wavemaker.learning.servlets.LoginServlet</servlet-class>
   </servlet>
@@ -33,7 +33,7 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/loginServlet</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>-->
 
 
   <servlet>
@@ -46,10 +46,20 @@
     <url-pattern>/logoutServlet</url-pattern>
   </servlet-mapping>
 
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.wavemaker.learning.filters.AuthenticationFilter</filter-class>
+  </filter>
 
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/login</url-pattern>
+
+  </filter-mapping>
 
   <welcome-file-list>
     <welcome-file>login.html</welcome-file>
+
   </welcome-file-list>
 
 

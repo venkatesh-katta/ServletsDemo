@@ -1,7 +1,5 @@
 package com.wavemaker.learning.servlets;
 
-import com.wavemaker.learning.base64.EncodeandDecode;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +12,7 @@ import java.io.PrintWriter;
  * Created by venkateswarluk on 15/7/16.
  */
 public class LogoutServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
