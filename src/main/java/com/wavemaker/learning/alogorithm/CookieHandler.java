@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CookieHandler {
 
-    public static void addCookie(HttpServletRequest request, HttpServletResponse response, String name)
-    {
+    public static void addCookie(HttpServletRequest request, HttpServletResponse response, String name) {
         String encodedName = Base64Encryption.encode(name);
         Cookie cookie = new Cookie("auth-cookie", encodedName);
         cookie.setPath(request.getContextPath());
@@ -18,21 +17,23 @@ public class CookieHandler {
         response.addCookie(cookie);
     }
 
-    public static boolean validateCookie(Cookie[] cookie){
+    public static boolean validateCookie(Cookie[] cookie) {
         String name = getCookie(cookie);
         return (name != null && !name.isEmpty());
     }
 
-    public static String getAuthCookie(Cookie[] cookie){
+    public static String getAuthCookie(Cookie[] cookie) {
         String name = getCookie(cookie);
         return name;
     }
 
     private static String getCookie(Cookie[] cookie) {
         String name = null;
-        for (int i = 0; i < cookie.length; i++) {
-            if (cookie[i].getName().equals("auth-cookie")) {
-                name = Base64Encryption.decode(cookie[i].getValue());
+        if (cookie != null) {
+            for (int i = 0; i < cookie.length; i++) {
+                if (cookie[i].getName().equals("auth-cookie")) {
+                    name = Base64Encryption.decode(cookie[i].getValue());
+                }
             }
         }
         return name;

@@ -23,12 +23,13 @@ public class LogoutServlet extends HttpServlet {
                 cookie.setMaxAge(0);
                 cookie.setPath(cookies[i].getPath());
                 response.addCookie(cookie);
-                out.print("Sucessfully LOgout!!");
+                out.print("<center><b>Sucessfully LOgout!!</b></center>");
             }
         }
 
-        out.print("<b>Please User First Login</b>");
+        out.print("<center><b>Please User First Login</b></center>");
         request.getRequestDispatcher("login.html").include(request, response);
+
 
 
     }

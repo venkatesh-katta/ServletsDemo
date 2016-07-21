@@ -38,7 +38,7 @@ public class ProductServlet extends HttpServlet {
             }
             out.print("</table>");
         }
-        out.print("<b>Please login first</b>");
+        out.print("<b><center>Please login first</b></center>");
         request.getRequestDispatcher("login.html").include(request, response);
         out.close();
     }

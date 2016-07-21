@@ -48,7 +48,7 @@ public class ProductDetails extends HttpServlet {
             out.print("</table>");
 
         }else {
-            out.print("<b>Please login first</b>");
+            out.print("<b><center>Please login first</center></b>");
             request.getRequestDispatcher("login.html").include(request, response);
             out.close();
         }

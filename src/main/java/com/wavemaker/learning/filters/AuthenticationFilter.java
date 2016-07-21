@@ -31,24 +31,21 @@ public class AuthenticationFilter implements Filter {
         UserService userService = new UserService();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
         String name = request.getParameter("name");
         String password = request.getParameter("password");
-        User user = userService.loadUser(name);
 
         if (filterRequest(httpServletRequest.getRequestURI())) {
+            User user = userService.loadUser(name);
             if (user.getPassword().equals(password)) {
                 out.print("You are successfully logged in!");
                 out.print("<br>Welcome, " + name);
                 CookieHandler.addCookie(httpServletRequest, httpServletResponse, name);
-                //httpServletResponse.sendRedirect("index.jsp");
-                //chain.doFilter(request, response);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 out.print("<b>sorry, username or password is incorrect!!!!<b>");
                 request.getRequestDispatcher("login.html").include(request, response);
             }
-            chain.doFilter(request, response);
+           // chain.doFilter(request, response);
         }
         else {
             Cookie cookie[] = httpServletRequest.getCookies();
@@ -56,6 +53,7 @@ public class AuthenticationFilter implements Filter {
                 chain.doFilter(request, response);
             } else {
                 httpServletResponse.setContentType("text/html");
+                out.print("<b>Please login First</b>");
                 request.getRequestDispatcher("login.html").include(request, response);
             }
         }
