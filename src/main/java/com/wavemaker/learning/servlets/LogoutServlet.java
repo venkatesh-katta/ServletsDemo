@@ -1,3 +1,4 @@
+/*
 package com.wavemaker.learning.servlets;
 
 import javax.servlet.ServletException;
@@ -8,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+*/
 /**
  * Created by venkateswarluk on 15/7/16.
- */
+ *//*
+
 public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,14 +26,16 @@ public class LogoutServlet extends HttpServlet {
                 cookie.setMaxAge(0);
                 cookie.setPath(cookies[i].getPath());
                 response.addCookie(cookie);
-                out.print("<center><b>Sucessfully LOgout!!</b></center>");
+                out.print("<center><b>Sucessfully Logout!!</b></center>");
+
             }
         }
 
-        out.print("<center><b>Please User First Login</b></center>");
+        out.print("<center><b>Please Login First</b></center>");
         request.getRequestDispatcher("login.html").include(request, response);
 
 
 
     }
 }
+*/

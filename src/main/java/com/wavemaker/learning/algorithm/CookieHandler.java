@@ -1,4 +1,4 @@
-package com.wavemaker.learning.alogorithm;
+package com.wavemaker.learning.algorithm;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

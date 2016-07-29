@@ -1,6 +1,6 @@
 package com.wavemaker.learning.filters;
 
-import com.wavemaker.learning.alogorithm.CookieHandler;
+import com.wavemaker.learning.algorithm.CookieHandler;
 import com.wavemaker.learning.models.User;
 import com.wavemaker.learning.service.UserService;
 
@@ -44,8 +44,8 @@ public class AuthenticationFilter implements Filter {
             } else {
                 out.print("<b>sorry, username or password is incorrect!!!!<b>");
                 request.getRequestDispatcher("login.html").include(request, response);
+
             }
-           // chain.doFilter(request, response);
         }
         else {
             Cookie cookie[] = httpServletRequest.getCookies();
@@ -55,6 +55,7 @@ public class AuthenticationFilter implements Filter {
                 httpServletResponse.setContentType("text/html");
                 out.print("<b>Please login First</b>");
                 request.getRequestDispatcher("login.html").include(request, response);
+
             }
         }
     }
